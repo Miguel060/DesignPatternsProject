@@ -1,0 +1,52 @@
+CREATE TABLE pais (
+    idPais SERIAL PRIMARY KEY,                
+    nmPais VARCHAR(100) NOT NULL,           
+    vlPassagem DOUBLE PRECISION NOT NULL      
+);
+CREATE TABLE grupo (
+    idGrupo SERIAL PRIMARY KEY          
+);
+CREATE TABLE agencia (
+    idAgencia SERIAL PRIMARY KEY,
+    nmAgencia VARCHAR(100) NOT NULL,
+    vlTxAgencia DOUBLE PRECISION NOT NULL   
+);
+CREATE TABLE hotel (
+    idHotel SERIAL PRIMARY KEY,
+    nmHotel VARCHAR(100) NOT NULL,
+    vlHotel DOUBLE PRECISION NOT NULL
+);
+CREATE TABLE pessoa (
+    idPessoa SERIAL PRIMARY KEY,
+    nmPessoa VARCHAR(100) NOT NULL,
+    idGrupo INTEGER NOT NULL,
+    CONSTRAINT fk_pessoa_grupo FOREIGN KEY (idGrupo)
+        REFERENCES grupo (idGrupo)
+        ON DELETE RESTRICT
+);
+
+CREATE TABLE viagem (
+    idViagem SERIAL PRIMARY KEY,
+    vlViagem DOUBLE PRECISION NOT NULL,
+
+    idPais INTEGER NOT NULL,
+    idGrupo INTEGER NOT NULL,
+    idHotel INTEGER NOT NULL,
+    idAgencia INTEGER NOT NULL,
+
+    CONSTRAINT fk_viagem_hotel FOREIGN KEY (idHotel)
+        REFERENCES hotel (idHotel)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_viagem_pais FOREIGN KEY (idPais)
+        REFERENCES pais (idPais)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_viagem_agencia FOREIGN KEY (idAgencia)
+        REFERENCES agencia (idAgencia)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_viagem_grupo FOREIGN KEY (idGrupo)
+        REFERENCES grupo (idGrupo)
+        ON DELETE RESTRICT
+);

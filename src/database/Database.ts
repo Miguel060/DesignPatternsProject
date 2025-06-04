@@ -8,6 +8,7 @@ export default class Database {
         this.pool = new Pool({
             user: process.env.DB_USER,
             host: process.env.DB_HOST,
+            database: process.env.DB_NAME,
             password: process.env.DB_PASSWORD,
             port: Number(process.env.DB_PORT)
         });
@@ -18,6 +19,10 @@ export default class Database {
             Database.instance = new Database();
         }
         return Database.instance;
+    }
+
+    public query(text: string, params?: any[]){
+        return this.pool.query(text, params);
     }
 
     public close() {

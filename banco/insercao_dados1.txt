@@ -1,0 +1,38 @@
+-- 1. Inserir os países
+INSERT INTO pais (nmPais, vlPassagem) VALUES
+    ('Alemanha', 3200.00),  -- idPais = 1
+    ('Portugal', 2100.00);  -- idPais = 2
+
+-- 2. Inserir os grupos
+INSERT INTO grupo DEFAULT VALUES; -- idGrupo = 1
+INSERT INTO grupo DEFAULT VALUES; -- idGrupo = 2
+
+-- 3. Inserir a agência aérea
+INSERT INTO agencia (nmAgencia, vlTxAgencia) VALUES
+    ('SkyWays', 450.00);  -- idAgencia = 1
+
+-- 4. Inserir os hotéis
+INSERT INTO hotel (nmHotel, vlHotel) VALUES
+    ('Berlin Plaza', 1200.00),   -- idHotel = 1
+    ('Lisboa Central', 950.00);  -- idHotel = 2
+
+-- 5. Inserir as pessoas nos grupos
+-- Grupo 1: 3 pessoas indo pra Alemanha
+INSERT INTO pessoa (nmPessoa, idGrupo) VALUES
+    ('Ana Schmidt', 1),
+    ('Carlos Becker', 1),
+    ('João Müller', 1);
+
+-- Grupo 2: 2 pessoas indo pra Portugal
+INSERT INTO pessoa (nmPessoa, idGrupo) VALUES
+    ('Mariana Costa', 2),
+    ('Pedro Silva', 2);
+
+-- 6. Inserir as viagens
+-- Viagem para Alemanha
+INSERT INTO viagem (vlViagem, idPais, idGrupo, idHotel, idAgencia)
+VALUES (4850.00, 1, 1, 1, 1);  -- Alemanha
+
+-- Viagem para Portugal
+INSERT INTO viagem (vlViagem, idPais, idGrupo, idHotel, idAgencia)
+VALUES (3600.00, 2, 2, 2, 1);  -- Portugal
