@@ -35,4 +35,12 @@ body{
     height: 3vh;
     text-shadow: none;
 }
+
+.painel_paises{
+    display: flex;
+    height: 10rem;
+    width: 20rem;
+    justify-content: center;
+    background-color: whitesmoke;
+}
    

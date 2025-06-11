@@ -1,13 +1,13 @@
 import Database from "../database/Database.js";
-import dotenv from 'dotenv-flow';
+import dotenv from 'dotenv';
+import cors from "cors";
+import express, {Request, Response} from "express"
+import { PostgresPaisRepository } from "../repositories/PostgresPaisRepository.js";
+
 dotenv.config();
+const app = express();
+const PORT = 3000;
 
-const conn = Database.getInstance();
-
-const query = `select pessoa.nmpessoa, pessoa.idpessoa, grupo.idgrupo 
-from pessoa inner join grupo on 
-pessoa.idgrupo = grupo.idgrupo`;
-
-const result = await conn.query(query);
-console.log(result.rows);
+app.use(cors());
+app.use(express.json())
 
