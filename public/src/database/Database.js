@@ -1,10 +1,6 @@
 import { Pool } from "pg";
-
 export default class Database {
-    private static instance: Database;
-    private pool: Pool;
-
-    private constructor() {
+    constructor() {
         this.pool = new Pool({
             user: "postgres",
             host: "localhost",
@@ -13,19 +9,16 @@ export default class Database {
             port: Number(5432)
         });
     }
-
-    public static getInstance(): Database {
+    static getInstance() {
         if (!Database.instance) {
             Database.instance = new Database();
         }
         return Database.instance;
     }
-
-    public query(text: string, params?: any[]){
+    query(text, params) {
         return this.pool.query(text, params);
     }
-
-    public close() {
+    close() {
         return this.pool.end();
     }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="module" src="/carrossel.js" defer></script>
+<script type="module" src="/busca.js" defer></script>
+<link rel="stylesheet" href="./Style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div class="viagens_titulo">
+            <h1>VIAGENS</h1>
+        </div>
+        <div class="carrossel_container">
+            <button id="prevBtn">◀</button>
+            <div class="painel_paises" >
+                <div class="paises_slider" id="slider">
+                </div>
+            </div>
+            <button id="nextBtn">▶</button>
+        </div>
+
+        <div class="painel_viagens">
+            <div class="form_painel">
+                <form>
+                    <input type="text" id="inputBusca" placeholder="Ex: Brasil">
+                </form>
+                <button class="form_painelBtn" id="btnBusca">Busca</button>
+            </div>
+            <div class="viagens_busca" id="buscaViagens">
+
+            </div>
+        </div>
+        <div class="viagens_cadastro">
+
+        </div>
+    </div>
+</body>
+
+</html>

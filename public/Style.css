@@ -1,0 +1,111 @@
+body {
+    height: 100vh;
+    background: linear-gradient(to bottom, #E6521F, #FB9E3A);
+    font-family: "Montserrat", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.viagens_titulo {
+    display: flex;
+    color: #fff;
+    padding: 7rem 9rem 2rem;
+    text-shadow: 0 0 3px #fff;
+}
+
+.carrossel_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.painel_paises {
+    display: flex;
+    height: 22vh;
+    width: 55vw;
+    justify-content: center;
+    align-items: center;
+    background-color: #393E46;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.paises_slider {
+    display: flex;
+}
+
+.card {
+    height: 15vh;
+    width: 15vw;
+    padding: 4px 2vw 4px 5px;
+}
+
+.card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;  
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardName{
+    color: #fff;
+    text-shadow: 0 0 2px #fff;
+    text-align: center;
+}
+
+.painel_viagens {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    gap: 2rem;
+}
+
+.form_painel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_painel input {
+    background-color: #fff;
+    border-radius: 17px;
+    border: none;
+    width: 40vw;
+    height: 3vh;
+    text-shadow: none;
+}
+
+.form_painel button{
+    background-color: #fff;
+    color: #393E46;
+    border-style: none;
+    height: 3vh;
+    width: 4vw;
+    border-radius: 17px;
+    margin-left: 0.4vw;
+}
+
+.viagens_busca {
+    display: flex;
+    background-color: #393E46;
+    border-radius: 5px;
+    height: 22vh;
+    width: 55vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardViagem{
+     height: 15vh;
+    width: 15vw;
+    padding: 4px 2vw 4px 5px;
+    background-color: pink;
+}
