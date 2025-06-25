@@ -12,4 +12,18 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: "Erro interno do servidor" });
     }
 });
+router.get("/buscar", async (req, res) => {
+    const { nome } = req.query;
+    if (!nome || typeof nome !== "string") {
+        return res.status(400).json({ error: "Parâmetro 'nome' é obrigatório." });
+    }
+    try {
+        const viagens = await paisRepository.listarViagens(nome);
+        res.json(viagens);
+    }
+    catch (error) {
+        console.error("Erro ao buscar viagens:", error);
+        res.status(500).json({ error: "Erro interno do servidor" });
+    }
+});
 export { router as paisesRouter };

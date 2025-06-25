@@ -13,7 +13,7 @@ async function carregarPaises() {
             card.className = "card";
             card.innerHTML = `
                 <img src="${pais.img}" alt="${pais.nmpais}" />
-                <p>${pais.nmpais}</p>            
+                <p class="cardName">${pais.nmpais}</p>            
             `;
             slider.appendChild(card);
         });

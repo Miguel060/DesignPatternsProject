@@ -2,11 +2,11 @@ import { Pool } from "pg";
 export default class Database {
     constructor() {
         this.pool = new Pool({
-            user: process.env.DB_USER,
-            host: process.env.DB_HOST,
-            database: process.env.DB_NAME,
-            password: process.env.DB_PASSWORD,
-            port: Number(process.env.DB_PORT)
+            user: "postgres",
+            host: "localhost",
+            database: "trabalhoFinalPoo2",
+            password: "1710",
+            port: Number(5432)
         });
     }
     static getInstance() {

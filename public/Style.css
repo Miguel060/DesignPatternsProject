@@ -9,6 +9,10 @@ body {
     padding: 0;
 }
 
+input:focus{
+    outline: none;
+}
+
 .viagens_titulo {
     display: flex;
     color: #fff;
@@ -24,8 +28,8 @@ body {
 
 .painel_paises {
     display: flex;
-    height: 22vh;
-    width: 55vw;
+    height: 24vh;
+    width: 57vw;
     justify-content: center;
     align-items: center;
     background-color: #393E46;
@@ -40,21 +44,34 @@ body {
 .card {
     height: 15vh;
     width: 15vw;
-    padding: 4px 2vw 4px 5px;
+    padding: 6px 5px 6px 5px;
+    padding-bottom: 2rem;
+    background-color: #EAEFEF;
+    border-radius: 9px;
+    margin: 1rem;
+    color: #000;
+    transition: 0.3s ease;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+.card:hover{
+    cursor: grab;
+    transform: scale(1.1);
+    transition: 0.3s ease;
 }
 
 .card img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 10px;  
+    border-radius: 10px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
-.cardName{
-    color: #fff;
-    text-shadow: 0 0 2px #fff;
+.cardName {
+    color: #000;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    font-weight: 500;
 }
 
 .painel_viagens {
@@ -81,9 +98,11 @@ body {
     width: 40vw;
     height: 3vh;
     text-shadow: none;
+    font-size: 15px;
+    padding-left: 2rem;
 }
 
-.form_painel button{
+.form_painel button {
     background-color: #fff;
     color: #393E46;
     border-style: none;
@@ -92,20 +111,74 @@ body {
     border-radius: 17px;
     margin-left: 0.4vw;
 }
-
+.painel_resultados {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 2rem;
+}
 .viagens_busca {
     display: flex;
     background-color: #393E46;
     border-radius: 5px;
-    height: 22vh;
-    width: 55vw;
+    height: 30vh;
+    width: 40vw;
     justify-content: center;
     align-items: center;
 }
 
-.cardViagem{
-     height: 15vh;
+.cardViagem {
+    height: 15vh;
     width: 15vw;
-    padding: 4px 2vw 4px 5px;
-    background-color: pink;
+    padding: 5px 3px 5px 3px;
+    padding-bottom: 4rem;
+    background-color: #EAEFEF;
+    border-radius: 5px;
+    margin: 1rem;
 }
+
+.cardViagem img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.viagens_cadastro {
+    display: flex;
+    flex-direction: column;
+    background-color: #393E46;
+    border-radius: 5px;
+    height: 30vh;
+    width: 40vw;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    align-items: center;
+    gap: 3rem;
+}
+
+.titulo_cadastro {
+    font-size: 1.6rem;
+    margin:0;
+    text-shadow: 0 0 3px #fff;
+    white-space: nowrap;
+    color: #fff;
+}
+
+.form_cadastro{
+    display: flex;
+    margin-right: 20vw;
+}
+.form_cadastro input{
+    display: flex;
+    border-radius: 1rem;
+    height: 1.6vh;
+    width: 12vw;
+    border: none;
+    padding-left: 2rem;
+
+}
+
