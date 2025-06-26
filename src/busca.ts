@@ -1,10 +1,6 @@
 const inputBusca = document.getElementById('inputBusca') as HTMLInputElement;
 const btnBusca = document.getElementById('btnBusca') as HTMLButtonElement;
 const divResultados = document.getElementById('buscaViagens') as HTMLDivElement;
-console.log("Script de busca carregado");
-console.log("inputBusca", inputBusca);
-console.log("btnBusca", btnBusca);
-console.log("divResultados", divResultados);
 
 btnBusca.addEventListener('click', async (e) => {
   e.preventDefault();
@@ -16,7 +12,7 @@ btnBusca.addEventListener('click', async (e) => {
     const res = await fetch(`/api/paises/buscar?nome=${encodeURIComponent(nome)}`);
     const viagens = await res.json();
     console.log(viagens)
-    divResultados.innerHTML = ""; 
+    divResultados.innerHTML = "";
 
     if (viagens.length === 0) {
       divResultados.innerHTML = "<p>Nenhuma viagem encontrada.</p>";
@@ -31,7 +27,23 @@ btnBusca.addEventListener('click', async (e) => {
         <p class="cardName">${viagem.nmpais}</p>
         <p>${viagem.vlviagem} pessoas</p>
         <p>${viagem.dtviagem}</p>
+        <button class="btn_remover" data-id="${viagem.idviagem}">DEL</button>
       `;
+
+      const btnRemover = card.querySelector('.btn_remover') as HTMLButtonElement;
+      btnRemover.addEventListener('click', async () => {
+        if (confirm('Tem certeza que deseja remover esta viagem?')) {
+          try {
+            await fetch(`/api/paises/viagens/${viagem.idviagem}`, { method: 'DELETE' });
+            card.remove();
+            alert('Viagem removida com sucesso!');
+          } catch (err) {
+            console.error("Erro ao remover viagem:", err);
+            alert('Erro ao remover viagem');
+          }
+        }
+      });
+
       divResultados.appendChild(card);
     });
   } catch (err) {

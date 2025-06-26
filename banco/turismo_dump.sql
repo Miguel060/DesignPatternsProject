@@ -96,7 +96,8 @@ ALTER SEQUENCE public.grupo_idgrupo_seq OWNED BY public.grupo.idgrupo;
 CREATE TABLE public.hotel (
     idhotel integer NOT NULL,
     nmhotel character varying(100) NOT NULL,
-    vlhotel double precision NOT NULL
+    vlhotel double precision NOT NULL,
+    idpais integer
 );
 
 
@@ -203,7 +204,7 @@ CREATE TABLE public.viagem (
     idviagem integer NOT NULL,
     vlviagem double precision NOT NULL,
     idpais integer NOT NULL,
-    idgrupo integer NOT NULL,
+    idgrupo integer,
     idhotel integer NOT NULL,
     idagencia integer NOT NULL,
     qntpessoas integer,
@@ -300,9 +301,16 @@ COPY public.grupo (idgrupo) FROM stdin;
 -- Data for Name: hotel; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.hotel (idhotel, nmhotel, vlhotel) FROM stdin;
-1	Berlin Plaza	1200
-2	Lisboa Central	950
+COPY public.hotel (idhotel, nmhotel, vlhotel, idpais) FROM stdin;
+1	Copacabana Palace	1200	3
+2	Fasano Rio	950	3
+3	Emiliano São Paulo	850	3
+4	Hotel Adlon Kempinski Berlin	1100	1
+5	Bayerischer Hof Munich	1050	1
+6	The Fontenay Hamburg	980	1
+7	Pestana Palace Lisboa	900	2
+8	The Yeatman Porto	950	2
+9	Vila Vita Parc Algarve	1100	2
 \.
 
 
@@ -313,6 +321,7 @@ COPY public.hotel (idhotel, nmhotel, vlhotel) FROM stdin;
 COPY public.pais (idpais, nmpais, vlpassagem, img) FROM stdin;
 1	Alemanha	3200	https://images.pexels.com/photos/109629/pexels-photo-109629.jpeg
 2	Portugal	2100	https://images.pexels.com/photos/3330202/pexels-photo-3330202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+3	Brasil	2000	https://images.pexels.com/photos/10354052/pexels-photo-10354052.jpeg
 \.
 
 
@@ -334,8 +343,8 @@ COPY public.pessoa (idpessoa, nmpessoa, idgrupo) FROM stdin;
 --
 
 COPY public.viagem (idviagem, vlviagem, idpais, idgrupo, idhotel, idagencia, qntpessoas, dtviagem) FROM stdin;
-2	3600	2	2	2	1	2	18/2/2026
-1	4850	1	1	1	1	3	17/10/2025
+9	2200	1	0	4	1	2	0001-01-01
+10	2550	3	0	3	1	3	1111-01-01
 \.
 
 
@@ -378,7 +387,7 @@ SELECT pg_catalog.setval('public.pessoa_idpessoa_seq', 5, true);
 -- Name: viagem_idviagem_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.viagem_idviagem_seq', 2, true);
+SELECT pg_catalog.setval('public.viagem_idviagem_seq', 11, true);
 
 
 --
@@ -430,6 +439,14 @@ ALTER TABLE ONLY public.viagem
 
 
 --
+-- Name: hotel fk_hotel_pais; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hotel
+    ADD CONSTRAINT fk_hotel_pais FOREIGN KEY (idpais) REFERENCES public.pais(idpais);
+
+
+--
 -- Name: pessoa fk_pessoa_grupo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -443,14 +460,6 @@ ALTER TABLE ONLY public.pessoa
 
 ALTER TABLE ONLY public.viagem
     ADD CONSTRAINT fk_viagem_agencia FOREIGN KEY (idagencia) REFERENCES public.agencia(idagencia) ON DELETE CASCADE;
-
-
---
--- Name: viagem fk_viagem_grupo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.viagem
-    ADD CONSTRAINT fk_viagem_grupo FOREIGN KEY (idgrupo) REFERENCES public.grupo(idgrupo) ON DELETE RESTRICT;
 
 
 --

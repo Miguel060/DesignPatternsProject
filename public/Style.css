@@ -150,14 +150,28 @@ input:focus {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
+.btn_remover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    height:4vh;
+    width: 4vw;
+    background-color: #8A0000;
+    color: #EAEFEF;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+
 .viagens_cadastro {
     display: flex;
     flex-direction: column;
     background-color: #393E46;
     color: #fff;
     border-radius: 5px;
-    height: 30vh;
-    width: 40vw;
+    height: 35vh;
+    width: 44vw;
     justify-content: flex-start;
     padding-top: 1rem;
     align-items: center;
@@ -178,18 +192,28 @@ input:focus {
     gap: 1rem;
 }
 
-.destinoEhotel{
+.destinoEhotel {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
 }
 
-.destinoEhotel select{
+.destinoEhotel select {
     cursor: pointer;
     height: 3vh;
     width: 6vw;
     color: #000;
     background-color: #fff;
     border-radius: 5px;
+}
+
+.data_viagem {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
 }
 
 
@@ -202,11 +226,27 @@ input:focus {
     padding-left: 2rem;
 }
 
-.formBtn{
-    display: flex;
-    flex-direction: row;
+.data_viagem input {
+    width: 6vw;
+    display: inline-block;
 }
-.quantidade_pessoas input{
-    height: 2vh;
+
+.formBtn {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.formBtn button{
+    height: 6vh;
+    width: 6vw;
+    background-color: #fff;
+}
+.quantidade_pessoas{
+   display: flex;
+   align-items: center;
+   gap: 2px;
+}
+.quantidade_pessoas input {
+    height: 1.5vh;
     width: 2vw;
 }

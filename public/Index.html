@@ -1,72 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script type="module" src="/carrossel.js" defer></script>
-<script type="module" src="/busca.js" defer></script>
-<script type="module" src="/cadastro.js" defer></script>
-<link rel="stylesheet" href="./Style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap"
-    rel="stylesheet">
-<title>Document</title>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agência de Viagens</title>
+    <link rel="stylesheet" href="./Style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <div class="viagens_titulo">
             <h1>VIAGENS</h1>
         </div>
+
         <div class="carrossel_container">
-            <button id="prevBtn">◀</button>
+            <button id="prevBtn" aria-label="País anterior">◀</button>
             <div class="painel_paises">
-                <div class="paises_slider" id="slider">
-                </div>
+                <div class="paises_slider" id="slider"></div>
             </div>
-            <button id="nextBtn">▶</button>
+            <button id="nextBtn" aria-label="Próximo país">▶</button>
         </div>
 
         <div class="painel_viagens">
             <div class="form_painel">
-                <form>
-                    <input type="text" id="inputBusca" placeholder="Ex: Brasil">
+                <form id="formBusca">
+                    <input type="text" id="inputBusca" placeholder="Ex: Brasil" aria-label="Buscar destinos">
+                    <button type="submit" class="form_painelBtn" id="btnBusca">Buscar</button>
                 </form>
-                <button class="form_painelBtn" id="btnBusca">Busca</button>
             </div>
             <div class="painel_resultados">
                 <div class="viagens_busca" id="buscaViagens"></div>
+
                 <div class="viagens_cadastro">
-                    <h1 class="titulo_cadastro">ADICIONAR VIAGEM</h1>
-                    <form action="" class="form_cadastro">
+                    <h2 class="titulo_cadastro">ADICIONAR VIAGEM</h2> <!-- Alterado para h2 -->
+                    <form class="form_cadastro" id="formViagem">
                         <div class="destinoEhotel">
                             <div class="selecao_paises">
                                 <label for="pais">Destino:</label>
-                                <select id="pais" name="pais">
+                                <select id="pais" name="idpais" required aria-label="Selecione o país">
                                     <option value="">Selecione um país</option>
-                                    <option value="brasil">Brasil</option>
-                                    <option value="alemanha">Alemanha</option>
-                                    <option value="portugal">Portugal</option>
                                 </select>
                             </div>
+
                             <div class="selecao_hotel">
                                 <label for="hotel">Hotel:</label>
-                                <select id="hotel" name="hotel">
-                                    <option value="">Selecione um hotel</option>
-                                    <option value="hotelA">Hotel A</option>
-                                    <option value="hotelB">Hotel B</option>
-                                    <option value="hotelC">Hotel C</option>
+                                <select id="hotel" name="idhotel" required disabled aria-label="Selecione o hotel">
+                                    <option value="">Primeiro selecione um país</option>
                                 </select>
                             </div>
+
+                            <div class="data_viagem">
+                                <label for="data">Data:</label>
+                                <input type="date" id="data" name="dtviagem" required
+                                    aria-label="Selecione a data da viagem">
+                            </div>
                         </div>
+
                         <div class="quantidade_pessoas">
                             <label for="pessoas">Quantidade de Pessoas:</label>
-                            <input type="number" id="pessoas" name="pessoas" min="1" />
+                            <input type="number" id="pessoas" name="qntpessoas" min="1" required
+                                aria-label="Número de pessoas">
                         </div>
+
                         <div class="formBtn">
-                            <button type="submit" class="btn_calcular">Calcular Preço</button>
-                            <p id="preco_total"></p>
+                            <button type="submit" class="btncalcular">Calcular Preço</button>
+                            <p id="preco_total" aria-live="polite"></p> 
                             <button type="button" id="btn_add_viagem" class="btn_adicionar">Adicionar Viagem</button>
                         </div>
                     </form>
@@ -74,6 +78,9 @@
             </div>
         </div>
     </div>
+    <script type="module" src="/carrossel.js" defer></script>
+    <script type="module" src="/busca.js" defer></script>
+    <script type="module" src="/cadastro.js" defer></script>
 </body>
 
 </html>

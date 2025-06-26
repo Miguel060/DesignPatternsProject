@@ -4,7 +4,7 @@ import express, {Request, Response} from "express"
 import { logger } from "../middlewares/Logger.js";
 import { paisesRouter } from "../routes/paises.routes.js";
 import path from "path";
-dotenv.config();
+
 
 const app = express();
 const PORT = 3000;

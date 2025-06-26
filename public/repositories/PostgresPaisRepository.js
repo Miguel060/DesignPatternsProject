@@ -4,7 +4,7 @@ export class PostgresPaisRepository {
         this.conn = Database.getInstance();
     }
     async listarViagens(nome) {
-        const result = await this.conn.query(`SELECT v.vlviagem, v.idpais, v.dtviagem,
+        const result = await this.conn.query(`SELECT v.idviagem, v.vlviagem, v.idpais,v.qntpessoas, v.dtviagem,
             p.nmpais, p.img
             FROM viagem v
             JOIN pais p ON v.idpais = p.idpais
@@ -12,19 +12,31 @@ export class PostgresPaisRepository {
         return result.rows;
     }
     async listar() {
-        const query = `SELECT idpais, nmpais, img 
+        const query = `SELECT idpais, nmpais, vlpassagem, img 
         FROM pais`;
         const result = await this.conn.query(query);
         return result.rows;
     }
+    async listarHoteisPorPais(idpais) {
+        const result = await this.conn.query(`SELECT idhotel, nmhotel, vlhotel FROM hotel WHERE idpais = $1`, [idpais]);
+        return result.rows;
+    }
     async adicionarViagem(data) {
-        const { pais, hotel, pessoas, dtviagem } = data;
-        const paisResult = await this.conn.query(`SELECT idpais FROM pais WHERE LOWER(nmpais) = LOWER($1)`, [pais]);
-        if (paisResult.rowCount === 0) {
-            throw new Error("País não encontrado");
-        }
-        const idpais = paisResult.rows[0].idpais;
-        await this.conn.query(`INSERT INTO viagem (idpais, hotel, vlviagem, dtviagem)
-       VALUES ($1, $2, $3, $4)`, [idpais, hotel, pessoas, dtviagem]);
+        const query = `
+    INSERT INTO viagem (idpais, idhotel, qntpessoas, vlviagem, dtviagem, idgrupo, idagencia)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    `;
+        await this.conn.query(query, [
+            data.idpais,
+            data.idhotel,
+            data.qntpessoas,
+            data.vlviagem,
+            data.dtviagem,
+            data.idgrupo || 0,
+            data.idagencia || 1
+        ]);
+    }
+    async removerViagem(idviagem) {
+        await this.conn.query('DELETE FROM viagem WHERE idviagem = $1', [idviagem]);
     }
 }

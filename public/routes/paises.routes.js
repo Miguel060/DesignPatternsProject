@@ -26,18 +26,47 @@ router.get("/buscar", async (req, res) => {
         res.status(500).json({ error: "Erro interno do servidor" });
     }
 });
-router.post("/adicionar", async (req, res) => {
-    const { pais, hotel, pessoas, dtviagem } = req.body;
-    if (!pais || !hotel || !pessoas || !dtviagem) {
-        return res.status(400).json({ error: "Todos os campos são obrigatórios." });
-    }
+router.get("/hoteis/:idpais", async (req, res) => {
+    const { idpais } = req.params;
     try {
-        await paisRepository.adicionarViagem({ pais, hotel, pessoas, dtviagem });
-        res.status(201).json({ message: "Viagem adicionada com sucesso!" });
+        const hoteis = await paisRepository.listarHoteisPorPais(Number(idpais));
+        res.json(hoteis);
     }
     catch (error) {
-        console.error("Erro ao adicionar viagem:", error);
+        console.error("Erro ao buscar hotéis:", error);
         res.status(500).json({ error: "Erro interno do servidor" });
+    }
+});
+router.post("/", async (req, res) => {
+    const { idpais, idhotel, qntpessoas, vlviagem, dtviagem, idgrupo, idagencia } = req.body;
+    if (!idpais || !idhotel || !qntpessoas || !vlviagem || !dtviagem) {
+        return res.status(400).json({ error: "Campos obrigatórios ausentes." });
+    }
+    try {
+        await paisRepository.adicionarViagem({
+            idpais,
+            idhotel,
+            qntpessoas,
+            vlviagem,
+            dtviagem,
+            idgrupo: idgrupo || 0,
+            idagencia: idagencia || 1
+        });
+        res.status(201).json({ message: "Viagem adicionada com sucesso." });
+    }
+    catch (err) {
+        console.error("Erro ao adicionar viagem:", err);
+        res.status(500).json({ error: "Erro interno do servidor" });
+    }
+});
+router.delete("/viagens/:idviagem", async (req, res) => {
+    try {
+        await paisRepository.removerViagem(Number(req.params.idviagem));
+        res.status(200).json({ success: true });
+    }
+    catch (error) {
+        console.error("Erro ao remover viagem:", error);
+        res.status(500).json({ error: "Erro ao remover viagem" });
     }
 });
 export { router as paisesRouter };
