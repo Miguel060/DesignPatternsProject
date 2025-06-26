@@ -17,4 +17,14 @@ export class PostgresPaisRepository {
         const result = await this.conn.query(query);
         return result.rows;
     }
+    async adicionarViagem(data) {
+        const { pais, hotel, pessoas, dtviagem } = data;
+        const paisResult = await this.conn.query(`SELECT idpais FROM pais WHERE LOWER(nmpais) = LOWER($1)`, [pais]);
+        if (paisResult.rowCount === 0) {
+            throw new Error("País não encontrado");
+        }
+        const idpais = paisResult.rows[0].idpais;
+        await this.conn.query(`INSERT INTO viagem (idpais, hotel, vlviagem, dtviagem)
+       VALUES ($1, $2, $3, $4)`, [idpais, hotel, pessoas, dtviagem]);
+    }
 }

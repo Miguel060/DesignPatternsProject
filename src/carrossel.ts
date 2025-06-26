@@ -1,4 +1,4 @@
-import { Pais } from "./src/models/Pais";
+import { Pais } from "./models/Pais"
 
 const slider = document.getElementById('slider') as HTMLDivElement;
 const prevBtn = document.getElementById('prevBtn') as HTMLDivElement;

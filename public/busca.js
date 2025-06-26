@@ -15,7 +15,7 @@ btnBusca.addEventListener('click', async (e) => {
         const res = await fetch(`/api/paises/buscar?nome=${encodeURIComponent(nome)}`);
         const viagens = await res.json();
         console.log(viagens);
-        divResultados.innerHTML = ""; // limpa resultados anteriores
+        divResultados.innerHTML = "";
         if (viagens.length === 0) {
             divResultados.innerHTML = "<p>Nenhuma viagem encontrada.</p>";
             return;

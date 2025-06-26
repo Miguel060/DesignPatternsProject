@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="module" src="/carrossel.js" defer></script>
 <script type="module" src="/busca.js" defer></script>
+<script type="module" src="/cadastro.js" defer></script>
 <link rel="stylesheet" href="./Style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +40,35 @@
                 <div class="viagens_cadastro">
                     <h1 class="titulo_cadastro">ADICIONAR VIAGEM</h1>
                     <form action="" class="form_cadastro">
-                        <input type="text">
+                        <div class="destinoEhotel">
+                            <div class="selecao_paises">
+                                <label for="pais">Destino:</label>
+                                <select id="pais" name="pais">
+                                    <option value="">Selecione um país</option>
+                                    <option value="brasil">Brasil</option>
+                                    <option value="alemanha">Alemanha</option>
+                                    <option value="portugal">Portugal</option>
+                                </select>
+                            </div>
+                            <div class="selecao_hotel">
+                                <label for="hotel">Hotel:</label>
+                                <select id="hotel" name="hotel">
+                                    <option value="">Selecione um hotel</option>
+                                    <option value="hotelA">Hotel A</option>
+                                    <option value="hotelB">Hotel B</option>
+                                    <option value="hotelC">Hotel C</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="quantidade_pessoas">
+                            <label for="pessoas">Quantidade de Pessoas:</label>
+                            <input type="number" id="pessoas" name="pessoas" min="1" />
+                        </div>
+                        <div class="formBtn">
+                            <button type="submit" class="btn_calcular">Calcular Preço</button>
+                            <p id="preco_total"></p>
+                            <button type="button" id="btn_add_viagem" class="btn_adicionar">Adicionar Viagem</button>
+                        </div>
                     </form>
                 </div>
             </div>
