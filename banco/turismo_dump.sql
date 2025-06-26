@@ -1,9 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 17.4
--- Dumped by pg_dump version 17.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,10 +14,6 @@ SET row_security = off;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: agencia; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.agencia (
     idagencia integer NOT NULL,
